@@ -23,27 +23,30 @@ class ConnectedList extends Component {
 
   handleRemove(event) {
     event.preventDefault()
-    const { id } = event.target;
+    const { id } = event.target
     this.props.removeArticle({ id })
   }
 
   render() {
     return (
-      <ul className="list-group list-group-flush">
-        {this.props.articles.map(el => (
-          <li className="list-group-item" key={el.id}>
-            <div>
-              {el.title}
-            </div>
-            <button onClick={this.handleRemove}
-                    className="btn btn-success btn-lg"
-                    id={el.id}
-            >
-              REMOVE
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="list-group list-group-flush">
+          {this.props.articles.map(el => (
+            <li className="list-group-item" key={el.id}>
+              <div>
+                {el.title}
+              </div>
+              <button onClick={this.handleRemove}
+                      className="btn btn-success btn-lg"
+                      id={el.id}
+              >
+                REMOVE
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
     )
   }
 }

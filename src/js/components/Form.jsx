@@ -26,6 +26,7 @@ class ConnectedForm extends Component {
   }
 
   handleSubmit(event) {
+    //TODO move to async
     event.preventDefault()
     const { title } = this.state
     const id = uuidv1()
