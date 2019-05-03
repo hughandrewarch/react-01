@@ -9,7 +9,8 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_ARTICLE:
       return Object.assign({}, state, {
-        articles: state.articles.concat(action.payload)
+        articles: state.articles.concat(action.payload),
+        foundBadWord: undefined
       })
     case REMOVE_ARTICLE:
       return Object.assign({}, state, {
@@ -17,9 +18,7 @@ function rootReducer(state = initialState, action) {
           return thing.id !== action.payload.id
         })
       })
-    //TODO mapStateToProps in new component to be able to see this message
     case FOUND_BAD_WORD:
-      console.log(action.payload)
       return Object.assign({}, state, {
         foundBadWord: action.payload
       })

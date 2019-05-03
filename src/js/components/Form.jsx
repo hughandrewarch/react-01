@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import uuidv1 from "uuid"
 import { addArticle } from "../actions/index"
+import ErrorMessage from "./ErrorMessage"
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -38,6 +39,7 @@ class ConnectedForm extends Component {
     const { title } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
+        <ErrorMessage/>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input

@@ -7,6 +7,6 @@ export function addArticle(payload) {
 export function removeArticle(payload) {
   return { type: REMOVE_ARTICLE, payload }
 }
-export function founBadWord(payload) {
+export function foundBadWord(payload) {
   return { type: FOUND_BAD_WORD, payload }
 }
