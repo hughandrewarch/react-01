@@ -1,7 +1,8 @@
-import { ADD_ARTICLE, FOUND_BAD_WORD, REMOVE_ARTICLE } from "../constants/action-types"
+import { ADD_ARTICLE, DATA_LOADED, FOUND_BAD_WORD, REMOVE_ARTICLE } from "../constants/action-types"
 
 const initialState = {
-  articles: []
+  articles: [],
+  remoteArticles: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -14,13 +15,17 @@ function rootReducer(state = initialState, action) {
       })
     case REMOVE_ARTICLE:
       return Object.assign({}, state, {
-        articles: state.articles.filter(function(thing){
+        articles: state.articles.filter(function (thing) {
           return thing.id !== action.payload.id
         })
       })
     case FOUND_BAD_WORD:
       return Object.assign({}, state, {
         foundBadWord: action.payload
+      })
+    case DATA_LOADED:
+      return Object.assign({}, state, {
+        remoteArticles: state.remoteArticles.concat(action.payload)
       })
     default:
       return state
