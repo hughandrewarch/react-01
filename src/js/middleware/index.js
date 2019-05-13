@@ -1,5 +1,5 @@
-import { ADD_ARTICLE } from "../constants/action-types"
-import { foundBadWord } from "../actions"
+import { ADD_ARTICLE, DATA_LOADED, GET_DATA } from "../constants/action-types"
+import { dataLoaded, foundBadWord } from "../actions"
 
 const forbiddenWords = ["crap", "boobs", "crap"];
 
@@ -20,7 +20,25 @@ export function forbiddenWordsMiddleware({ dispatch }) {
           break;
         default:
       }
+      return next(action)
+    }
+  }
+}
 
+export function pageMiddleware({ dispatch }) {
+  return function(next){
+    return function(action){
+      switch (action.type) {
+        case GET_DATA:
+          return dispatch(function(dispatch) {
+            return fetch("https://jsonplaceholder.typicode.com/posts")
+              .then(response => response.json())
+              .then(json => {
+                dispatch(dataLoaded(json));
+              });
+          });
+        default:
+      }
       return next(action)
     }
   }
